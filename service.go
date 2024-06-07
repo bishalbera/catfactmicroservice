@@ -14,14 +14,14 @@ type CatFactService struct {
 	url string
 }
 
-func NewCatFactService(url string) Service{
+func NewCatFactService(url string) Service {
 
 	return &CatFactService{
 		url: url,
 	}
 }
 
-func (s *CatFactService)GetCatFact(ctx context.Context) (*Catfact, error) {
+func (s *CatFactService) GetCatFact(ctx context.Context) (*Catfact, error) {
 	resp, err := http.Get(s.url)
 
 	if err != nil {
@@ -29,9 +29,9 @@ func (s *CatFactService)GetCatFact(ctx context.Context) (*Catfact, error) {
 	}
 	defer resp.Body.Close()
 
-	fact:= &Catfact{}
+	fact := &Catfact{}
 
-	if  err:= json.NewDecoder(resp.Body).Decode(fact); err != nil{
+	if err := json.NewDecoder(resp.Body).Decode(fact); err != nil {
 		return nil, err
 	}
 

@@ -17,5 +17,5 @@ func NewMetricService(next Service) Service {
 
 func (s *metricService) GetCatFact(ctx context.Context) (fact *Catfact, err error) {
 	fmt.Println("Pushing metrics to prometheus")
-	return s.next.GetCatFact(ctx)	
+	return s.next.GetCatFact(ctx)
 }

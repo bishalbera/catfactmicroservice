@@ -1,18 +1,11 @@
 package main
 
-import (
-	"context"
-	"log"
-)
+func main() {
+	svc := NewCatFactService("https://catfact.ninja/fact")
 
-func main()  {
-	svc:= NewCatFactService("https://catfact.ninja/fact")
+	svc = NextLoggingService(NewMetricService(svc))
 
-	svc = NextLoggingService(svc)
+	server := NewApiServer(svc, ":3000")
 
-	_, err:= svc.GetCatFact(context.TODO())
-
-	if err != nil {
-		log.Fatal(err)
-	}
+	server.Run()
 }

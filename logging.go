@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-
 type LoggingService struct {
 	next Service
 }
@@ -18,10 +17,10 @@ func NextLoggingService(next Service) Service {
 }
 
 func (s *LoggingService) GetCatFact(ctx context.Context) (fact *Catfact, err error) {
-	
-	defer func(start time.Time){
+
+	defer func(start time.Time) {
 		fmt.Printf("fact:= %s, err:= %v, took:= %v\n", fact.Fact, err, time.Since(start))
 	}(time.Now())
-	
+
 	return s.next.GetCatFact(ctx)
 }
