@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/bishalbera/catfactmicroservice/proto";
+
+service CatFact {
+    rpc  GetCatFact(CatFactRequest) returns (CatFactResponse);
+}
+
+message CatFactRequest {
+    
+}
+
+message CatFactResponse {
+    string fact = 1;
+}
