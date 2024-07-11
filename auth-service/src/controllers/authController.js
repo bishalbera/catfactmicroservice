@@ -1,4 +1,5 @@
 import { sign } from "jsonwebtoken";
+const User = require("../models/userModel");
 
 const generateToken = (id) => {
   return sign({id}, process.env.JWT_SECRET, { expiresIn: "30d" });

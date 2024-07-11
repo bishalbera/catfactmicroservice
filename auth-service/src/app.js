@@ -8,6 +8,14 @@ const app = express();
 app.use(express.json());
 
 
-app.use("/api/auth", authRoutes);
+sequelize.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' + err));
+
+
+sequelize.sync();
+
+app.use('/api/auth', authRoutes);
+
 
 module.exports = app;
