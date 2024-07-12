@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dontenv";
+const catRoutes = require("./routes/catRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 dotenv.config();
 
@@ -16,6 +18,8 @@ sequelize.authenticate()
 sequelize.sync();
 
 app.use('/api/auth', authRoutes);
+app.use('/api/cat', catRoutes);
+
 
 
 module.exports = app;
