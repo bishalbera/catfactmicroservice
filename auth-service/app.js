@@ -1,7 +1,10 @@
-import express from "express";
-import dotenv from "dontenv";
-const catRoutes = require("./routes/catRoutes");
-const authRoutes = require("./routes/authRoutes");
+const express = require('express');
+const dotenv = require('dotenv');
+
+const catRoutes = require("./src/routes/catRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const { sequelize } = require('./src/models/userModel');
+
 
 dotenv.config();
 

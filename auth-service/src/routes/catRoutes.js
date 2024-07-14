@@ -1,4 +1,7 @@
-import express from "express";
+const express = require('express');
+const { protect } = require('../middleware/authMiddleware');
+const { getCatFact } = require('../services/grpcClient');
+
 
 
 const router = express.Router();

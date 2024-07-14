@@ -1,11 +1,12 @@
-import grpc from '@grpc/grpc-js';
-import { loadSync } from '@grpc/proto-loader';
-import { join } from 'path';
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader');
+const path = require('path');
 
 
-const PROTO_PATH = join(__dirname, "../../../proto/service.proto");
 
-const packageDefinition = loadSync(PROTO_PATH, {
+const PROTO_PATH = path.join(__dirname, "../../../proto/service.proto");
+
+const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 
     keepCase: true,
     longs: String,

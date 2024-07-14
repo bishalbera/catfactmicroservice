@@ -1,5 +1,6 @@
-import { verify } from 'jsonwebtoken';
-import { findByPk } from '../models/userModel';
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
+
 
 
 const protect = async (req, res, next) => {
@@ -8,9 +9,9 @@ const protect = async (req, res, next) => {
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         try{
             token = req.headers.authorization.split(" ")[1];
-            const decoded = verify(token, process.env.JWT_SECRET);
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-            req.user = await findByPk(decoded.id);
+            req.user = await User.findByPk(decoded.id);
 
             next()
         } catch (error) {
@@ -22,4 +23,4 @@ const protect = async (req, res, next) => {
     }
 };
 
-export default {protect};
+module.exports = {protect};

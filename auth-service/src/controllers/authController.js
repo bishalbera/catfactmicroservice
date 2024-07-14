@@ -1,8 +1,8 @@
-import { sign } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 const generateToken = (id) => {
-  return sign({id}, process.env.JWT_SECRET, { expiresIn: "30d" });
+  return jwt.sign({id}, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
 
 const registerUser = async (req, res) => {
